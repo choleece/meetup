@@ -28,12 +28,16 @@ public class FinalTest {
     }
 
     /**
-     * final修饰的方法只能使用，不能重载
+     * final修饰的方法只能使用
      * @param a
      * @return
      */
     final int testFinalFunc(int a) {
         return a;
+    }
+
+    final int testFinalFunc(int a, int b) {
+        return a + b;
     }
 
 }
