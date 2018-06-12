@@ -98,19 +98,49 @@ public class BinarySearchTree {
         }
     }
 
+    public void remove(int val) {
+        remove(val, root);
+    }
+
+    private Node remove(int val, Node root) {
+        if (root == null) {
+//            节点为空，什么也不做
+            return root;
+        }
+        if (val < root.val) {
+            root.left = remove(val, root.left);
+        } else if (val > root.val) {
+            root.right = remove(val, root);
+        } else if (root.right != null && root.left != null) {
+//            此节点有两个孩子
+            root.val = findMin(root.right).val;
+            root.right = remove(root.val, root.right);
+        } else {
+//            此节点只有一个孩子或者一个孩子都没有
+            root = (root.left != null) ? root.left : root.right;
+        }
+        return root;
+    }
+
     private void printTree(Node root) {
         if (root != null) {
-            printTree(root.right);
-            printTree(root.left);
             System.out.println(root.val);
+            printTree(root.left);
+            printTree(root.right);
         }
     }
 
     public static void main(String[] args) {
         BinarySearchTree tree = new BinarySearchTree();
-        tree.insert(1);
+        tree.insert(12);
+        tree.insert(6);
+        tree.insert(14);
         tree.insert(4);
-        tree.insert(5);
+        tree.insert(8);
+        tree.insert(7);
+        tree.insert(9);
+        tree.printTree();
+        tree.remove(6);
         tree.printTree();
     }
 }
