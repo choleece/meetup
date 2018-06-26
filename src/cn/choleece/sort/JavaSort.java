@@ -91,6 +91,28 @@ public class JavaSort {
         return arr;
     }
 
+    /**
+     * 每一轮找出当前轮最小或者最大的那个数,最坏的情况是倒叙，时间复杂度为O(n2)，最好的情况为顺序，时间复杂度为O(n)
+     * @param arrs
+     * @return
+     */
+    public static int[] bubbleSort(int[] arrs) {
+        if (arrs == null) {
+            return null;
+        }
+        for (int i = 0; i < arrs.length; i++) {
+            int temp = arrs[i];
+            for (int j = i + 1; j < arrs.length; j++) {
+                if (arrs[j] <= temp) {
+                    arrs[i] = arrs[j];
+                    arrs[j] = temp;
+                    temp = arrs[i];
+                }
+            }
+        }
+        return arrs;
+    }
+
     public static void main(String[] args) {
         System.out.println("直接插入排序");
         int[] dis = directInsertSort(sorts);
@@ -110,6 +132,12 @@ public class JavaSort {
         int[] ss = shellSort(sorts);
         for (int i = 0; i < sorts.length; i++) {
             System.out.println(ss[i]);
+        }
+
+        System.out.println("冒泡排序");
+        int[] bubbleSort = shellSort(sorts);
+        for (int i = 0; i < bubbleSort.length; i++) {
+            System.out.println(bubbleSort[i]);
         }
     }
 }
