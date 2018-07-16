@@ -20,6 +20,9 @@ public class ProxyDemo {
         dynamicProxy.loveBaby();
 
         // CGLIB动态代理
+        /**
+         * CGLIB实现的动态代理，要求委托不能被final关键字修饰，因为在运行期间，通过Java的反射极致，会生成委托类的子类，我们知道，一旦被final关键字修饰，那么这个类就不能被继承
+         */
         System.out.println("I am the cglib dynamic model");
         CglibDynamicProxy cglibDynamicProxy = new CglibDynamicProxy();
         CglibDynamicProxyImpl cglibDynamicProxyImpl = (CglibDynamicProxyImpl) cglibDynamicProxy.getInstance(new CglibDynamicProxyImpl());
