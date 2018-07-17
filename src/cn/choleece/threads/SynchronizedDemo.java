@@ -1,5 +1,7 @@
 package cn.choleece.threads;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * synchronize 关键字demo
  * @author choleece
