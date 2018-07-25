@@ -4,3 +4,4 @@
 
 1. Collection
 
+Collection接口继承了Iterable接口，表明Collection是可以迭代的，关于Iterable的知识，可以查看[Iterable](www.baidu.com)

@@ -95,3 +95,69 @@ public interface Iterable<T> {
 ``` 
 
 继承了Iterable的类是可以返回一个Iterator迭代器的，也就包含了Iterator的操作行为。
+
+### ListIterator 
+
+我们查看ListIterator的源码可以看到，ListIterator是继承Iterator的，所以Iterator有的功能ListIterator都有，ListIterator的部分源码如下:
+
+```
+public interface ListIterator<E> extends Iterator<E> {
+    boolean hasNext();
+    
+    E next();
+    
+    boolean hasPrevious();
+    
+    E previous();
+    
+    int nextIndex();
+    
+    int previousIndex();
+    
+    void remove();
+    
+    void set(E e);
+    
+    void add(E e);
+}
+```
+
+我们可以从源码可以看到，ListIterator里同样也有next()，hasNext()，remove()方法，但是同时，我们可以看到ListIterator也有previous()，hasPrevious()等方法，所以我们可以得知Iterator是一个单向的迭代，而ListIterator是一个双向的。
+另外，Iterator还有其他的几个方法，我们下边来分别介绍下：
+
+```
+public static void main(String[] args) {
+    List list = new ArrayList();
+    list.add(1);
+    list.add(2);
+    list.add(3);
+    list.add(4);
+    list.add(5);
+    list.add(6);
+
+    ListIterator li = list.listIterator();
+
+    System.out.println(li.previousIndex());
+
+    // 向后遍历
+    while (li.hasNext()) {
+        System.out.println(li.next());
+    }
+    System.out.println("向后遍历完，接着执行set 0");
+    li.set(0);
+    System.out.println("set 0 完毕，执行next index");
+    System.out.println(li.nextIndex());
+    System.out.println("next index 完毕，执行add");
+    li.add(7);
+    System.out.println("add 0 完毕，执行next index");
+    System.out.println(li.nextIndex());
+    System.out.println("next index 完毕，执行previous index");
+    System.out.println(li.previousIndex());
+    while (li.hasPrevious()) {
+        System.out.println(li.previous());
+    }
+}
+```
+
+运行上述结果，会发现，在刚开始的时候，执行previousIndex，返回的是-1,此时迭代“指针”还处于初始位置，如果此时执行set操作会报错，在后边的set方法中，set进去的值会替换掉当前位置的值，如果是add，则是添加一个值到list当中去
+
